@@ -50,25 +50,70 @@ public class ShoppingCartManualTest {
         }
 
         // Test 4: ค่า price ติดลบ 
-        ArrayList<CartItem> MinusCart = new ArrayList<>();
-        simpleCart.add(new CartItem("NORMAL", "Candy", -5, 2)); // 50
-        simpleCart.add(new CartItem("NORMAL", "Milk", 15.0, 1));      // 15
-        double total4 = ShoppingCartCalculator.calculateTotalPrice(simpleCart);
+        ArrayList<CartItem> MinusPriceCart = new ArrayList<>();
+        MinusPriceCart.add(new CartItem("NORMAL", "Candy", -5, 2)); // -10
+        MinusPriceCart.add(new CartItem("NORMAL", "Milk", 15.0, 1)); // 15
+        double total4 = ShoppingCartCalculator.calculateTotalPrice(MinusPriceCart);
         if (total4 == 0.0) {
-            System.out.println("Tase Case 4 : PASSED: Minus Cart total should return 0.0");
+            System.out.println("Tase Case 4 : PASSED: Minus Price Cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 4 : FAILED: Minus Cart total expected -5.0 but got " + total4);
+            System.out.println("Tase Case 4 : FAILED: Minus Price Carttotal expected 0.0 but got " + total4);
             failedCount++;
         }
 
+        // Test 5: ค่า quantity ติดลบ 
+        ArrayList<CartItem> MinusQuantityCart = new ArrayList<>();
+        MinusQuantityCart.add(new CartItem("NORMAL", "TOY", 50, -2)); // -100
+        MinusQuantityCart.add(new CartItem("NORMAL", "Milk", 40, 1)); // 40
+        double total5 = ShoppingCartCalculator.calculateTotalPrice(MinusQuantityCart);
+        if (total5 == 0.0) {
+            System.out.println("Tase Case 5 : PASSED: Minus Quantity Cart should return 0.0");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 5 : FAILED: Minus Quantity Cart total expected 0.0 but got " + total5);
+            failedCount++;
+        }
 
+        // Test 6: ค่า price และ quantity ติดลบ 
+        ArrayList<CartItem> MinusCart = new ArrayList<>();
+        MinusCart.add(new CartItem("NORMAL", "Omo", -100, -2)); // 200
+        MinusCart.add(new CartItem("NORMAL", "Oil", -50, -1)); // 50
+        double total6 = ShoppingCartCalculator.calculateTotalPrice(MinusCart);
+        if (total6 == 0.0) {
+            System.out.println("Tase Case 6 : PASSED: Minus Cart should return 0.0");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 6 : FAILED: Minus Cart total expected 0.0 but got " + total6);
+            failedCount++;
+        }
 
+        // Test 7: คำนวณตามกฎส่วนลด BOGO-APPLE (ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้
+        ArrayList<CartItem> FreeCart = new ArrayList<>();
+        FreeCart.add(new CartItem("BOGO", "Frozen food", 85.0, 3)); // 85*2 == 170 free 1
+        FreeCart.add(new CartItem("BOGO", "Milk", 30.0, 2));      // 30 free 1
+        double total7 = ShoppingCartCalculator.calculateTotalPrice(FreeCart);
+        if (total7 == 200.0) {
+            System.out.println("Tase Case 7 : PASSED: Free cart cart total is correct (200.0)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 7 : FAILED: Free cart total expected 200.0 but got " + total7);
+            failedCount++;
+        }
 
+        // Test 8: คำนวณตามกฎส่วนลด BOGO-APPLE (ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้า 1 ชิ้น
+        ArrayList<CartItem> FreeBuyOneCart = new ArrayList<>();
+        FreeBuyOneCart.add(new CartItem("BOGO", "Frozen food", 85.0, 3)); // 85*2 == 170 free 1
+        FreeBuyOneCart.add(new CartItem("BOGO", "Sandwich", 10.0, 1));      // 10 free 1
+        double total8 = ShoppingCartCalculator.calculateTotalPrice(FreeBuyOneCart);
+        if (total8 == 180.0) {
+            System.out.println("Tase Case 8 : PASSED: Free buy one cart total is correct (180.0)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 8 : FAILED: Free buy one cart total expected 180.0 but got " + total8);
+            failedCount++;
+        }
 
-
-
-        
         // --- Test Summary ---
         System.out.println("\n--------------------");
         System.out.println("--- Test Summary ---");
