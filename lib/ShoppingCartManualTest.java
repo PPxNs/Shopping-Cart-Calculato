@@ -13,14 +13,14 @@ public class ShoppingCartManualTest {
         try {
             double total1 = ShoppingCartCalculator.calculateTotalPrice(null);
             if (total1 == 0.0) {
-                System.out.println("Tase Case 1 : PASSED: Null cart should return 0.0");
+                System.out.println("Tast Case 1 : PASSED: Null cart should return 0.0");
                 passedCount++;
             } else {
-                System.out.println("Tase Case 1 : FAILED: Null cart expected 0.0 but got " + total1);
+                System.out.println("Tast Case 1 : FAILED: Null cart expected 0.0 but got " + total1);
                 failedCount++;
             }
         } catch (Exception e) {
-            System.out.println("Tase Case 1 : FAILED: Null cart caused an exception: " + e.getMessage());
+            System.out.println("Tast Case 1 : FAILED: Null cart caused an exception: " + e.getMessage());
             failedCount++;
         }
 
@@ -28,10 +28,10 @@ public class ShoppingCartManualTest {
         ArrayList<CartItem> emptyCart = new ArrayList<>();
         double total2 = ShoppingCartCalculator.calculateTotalPrice(emptyCart);
         if (total2 == 0.0) {
-            System.out.println("Tase Case 2 : PASSED: Empty cart should return 0.0");
+            System.out.println("Tast Case 2 : PASSED: Empty cart should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 2 : FAILED: Empty cart expected 0.0 but got " + total2);
+            System.out.println("Tast Case 2 : FAILED: Empty cart expected 0.0 but got " + total2);
             failedCount++;
         }
 
@@ -41,10 +41,10 @@ public class ShoppingCartManualTest {
         simpleCart.add(new CartItem("NORMAL", "Milk", 15.0, 1));      // 15
         double total3 = ShoppingCartCalculator.calculateTotalPrice(simpleCart);
         if (total3 == 65.0) {
-            System.out.println("Tase Case 3 : PASSED: Simple cart total is correct (65.0)");
+            System.out.println("Tast Case 3 : PASSED: Simple cart total is correct (65.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 3 : FAILED: Simple cart total expected 65.0 but got " + total3);
+            System.out.println("Tast Case 3 : FAILED: Simple cart total expected 65.0 but got " + total3);
             failedCount++;
         }
 
@@ -54,10 +54,10 @@ public class ShoppingCartManualTest {
         MinusPriceCart.add(new CartItem("NORMAL", "Milk", 15.0, 1)); // 15
         double total4 = ShoppingCartCalculator.calculateTotalPrice(MinusPriceCart);
         if (total4 == 0.0) {
-            System.out.println("Tase Case 4 : PASSED: Minus Price Cart total should return 0.0");
+            System.out.println("Tast Case 4 : PASSED: Minus Price Cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 4 : FAILED: Minus Price Carttotal expected 0.0 but got " + total4);
+            System.out.println("Tast Case 4 : FAILED: Minus Price Carttotal expected 0.0 but got " + total4);
             failedCount++;
         }
 
@@ -67,10 +67,10 @@ public class ShoppingCartManualTest {
         MinusQuantityCart.add(new CartItem("NORMAL", "Milk", 40, 1)); // 40
         double total5 = ShoppingCartCalculator.calculateTotalPrice(MinusQuantityCart);
         if (total5 == 0.0) {
-            System.out.println("Tase Case 5 : PASSED: Minus Quantity Cart should return 0.0");
+            System.out.println("Tast Case 5 : PASSED: Minus Quantity Cart should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 5 : FAILED: Minus Quantity Cart total expected 0.0 but got " + total5);
+            System.out.println("Tast Case 5 : FAILED: Minus Quantity Cart total expected 0.0 but got " + total5);
             failedCount++;
         }
 
@@ -80,10 +80,10 @@ public class ShoppingCartManualTest {
         MinusCart.add(new CartItem("NORMAL", "Oil", -50, -1)); // 50
         double total6 = ShoppingCartCalculator.calculateTotalPrice(MinusCart);
         if (total6 == 0.0) {
-            System.out.println("Tase Case 6 : PASSED: Minus Cart should return 0.0");
+            System.out.println("Tast Case 6 : PASSED: Minus Cart should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 6 : FAILED: Minus Cart total expected 0.0 but got " + total6);
+            System.out.println("Tast Case 6 : FAILED: Minus Cart total expected 0.0 but got " + total6);
             failedCount++;
         }
 
@@ -93,10 +93,10 @@ public class ShoppingCartManualTest {
         FreeCart.add(new CartItem("BOGO", "Milk", 30.0, 2));      // 30 free 1
         double total7 = ShoppingCartCalculator.calculateTotalPrice(FreeCart);
         if (total7 == 200.0) {
-            System.out.println("Tase Case 7 : PASSED: Free cart total is correct (200.0)");
+            System.out.println("Tast Case 7 : PASSED: Free cart total is correct (200.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 7 : FAILED: Free cart total expected 200.0 but got " + total7);
+            System.out.println("Tast Case 7 : FAILED: Free cart total expected 200.0 but got " + total7);
             failedCount++;
         }
 
@@ -106,10 +106,10 @@ public class ShoppingCartManualTest {
         FreeBuyOneCart.add(new CartItem("BOGO", "Sandwich", 10.0, 1));      // 10 free 1
         double total8 = ShoppingCartCalculator.calculateTotalPrice(FreeBuyOneCart);
         if (total8 == 180.0) {
-            System.out.println("Tase Case 8 : PASSED: Free buy one cart total is correct (180.0)");
+            System.out.println("Tast Case 8 : PASSED: Free buy one cart total is correct (180.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 8 : FAILED: Free buy one cart total expected 180.0 but got " + total8);
+            System.out.println("Tast Case 8 : FAILED: Free buy one cart total expected 180.0 but got " + total8);
             failedCount++;
         }
 
@@ -119,10 +119,10 @@ public class ShoppingCartManualTest {
         DiscountCart.add(new CartItem("BULK", "Yogurt", 12, 6));   // 72-(7.2)==64.8
         double total9 = ShoppingCartCalculator.calculateTotalPrice(DiscountCart);
         if (total9 == 154.8) {
-            System.out.println("Tase Case 9 : PASSED: Discount cart total is correct (154.8)");
+            System.out.println("Tast Case 9 : PASSED: Discount cart total is correct (154.8)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 9 : FAILED: Discount cart total expected 154.8 but got " + total9);
+            System.out.println("Tast Case 9 : FAILED: Discount cart total expected 154.8 but got " + total9);
             failedCount++;
         }
 
@@ -132,10 +132,10 @@ public class ShoppingCartManualTest {
         DiscountVer2Cart.add(new CartItem("BULK", "Yogurt", 12, 5));   // 60
         double total10 = ShoppingCartCalculator.calculateTotalPrice(DiscountVer2Cart);
         if (total10 == 150.0) {
-            System.out.println("Tase Case 10 : PASSED: Discount cart ver 2 total is correct (150.0)");
+            System.out.println("Tast Case 10 : PASSED: Discount cart ver 2 total is correct (150.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 10 : FAILED: Discount cart ver 2 total expected 150.0 but got " + total10);
+            System.out.println("Tast Case 10 : FAILED: Discount cart ver 2 total expected 150.0 but got " + total10);
             failedCount++;
         }
 
@@ -147,10 +147,10 @@ public class ShoppingCartManualTest {
         MixCart.add(new CartItem("BOGO", "Shampoo", 45.0, 2)); // 45 free 1
         double total11 = ShoppingCartCalculator.calculateTotalPrice(MixCart);
         if (total11 == 260.0) {
-            System.out.println("Tase Case 11 : PASSED: Mix cart total is correct (260.0)");
+            System.out.println("Tast Case 11 : PASSED: Mix cart total is correct (260.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 11 : FAILED: Mix cart total expected 260.0 but got " + total11);
+            System.out.println("Tast Case 11 : FAILED: Mix cart total expected 260.0 but got " + total11);
             failedCount++;
         }
 
@@ -162,10 +162,10 @@ public class ShoppingCartManualTest {
         MixTextCart.add(new CartItem("bogo", "Shampoo", 45.0, 2)); // 45 free 1
         double total12 = ShoppingCartCalculator.calculateTotalPrice(MixTextCart);
         if (total12 == 260.0) {
-            System.out.println("Tase Case 12 : PASSED: Mix text cart total is correct (260.0)");
+            System.out.println("Tast Case 12 : PASSED: Mix text cart total is correct (260.0)");
             passedCount++;
         } else {
-            System.out.println("Tase Case 12 : FAILED: Mix text cart total expected 260.0 but got " + total12);
+            System.out.println("Tast Case 12 : FAILED: Mix text cart total expected 260.0 but got " + total12);
             failedCount++;
         }
 
@@ -177,10 +177,10 @@ public class ShoppingCartManualTest {
         TextWrongCart.add(new CartItem("bogo", "Shampoo", 45.0, 2)); // 45 free 1
         double total13 = ShoppingCartCalculator.calculateTotalPrice(TextWrongCart);
         if (total13 == 0.0) {
-            System.out.println("Tase Case 13 : PASSED: Text wrong cart total should return 0.0");
+            System.out.println("Tast Case 13 : PASSED: Text wrong cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 13 : FAILED: Text wrong cart total expected 260.0 but got " + total13);
+            System.out.println("Tast Case 13 : FAILED: Text wrong cart total expected 260.0 but got " + total13);
             failedCount++;
         }
 
@@ -192,10 +192,10 @@ public class ShoppingCartManualTest {
         PriceZeroCart.add(new CartItem("BOGO", "Shampoo", 45.0, 2)); // 45 free 1
         double total14 = ShoppingCartCalculator.calculateTotalPrice(PriceZeroCart);
         if (total14 == 0.0) {
-            System.out.println("Tase Case 14 : PASSED: Price zero cart total should return 0.0");
+            System.out.println("Tast Case 14 : PASSED: Price zero cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 14 : FAILED: Price zero cart total expected 0.0 but got " + total14);
+            System.out.println("Tast Case 14 : FAILED: Price zero cart total expected 0.0 but got " + total14);
             failedCount++;
         }
 
@@ -207,10 +207,10 @@ public class ShoppingCartManualTest {
         TextNullCart.add(new CartItem(" ", " ", 45.0, 2)); // 45 free 1
         double total15 = ShoppingCartCalculator.calculateTotalPrice(TextNullCart);
         if (total15 == 0.0) {
-            System.out.println("Tase Case 15 : PASSED: Text null cart total should return 0.0");
+            System.out.println("Tast Case 15 : PASSED: Text null cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 15 : FAILED: Text null cart total expected 0.0 but got " + total15);
+            System.out.println("Tast Case 15 : FAILED: Text null cart total expected 0.0 but got " + total15);
             failedCount++;
         }
 
