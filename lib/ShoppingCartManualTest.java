@@ -2,7 +2,6 @@ package lib;
 import java.util.ArrayList;
 
 public class ShoppingCartManualTest {
-
     public static void run() {
         System.out.println("--- Starting Shopping Cart Calculator Tests ---");
         System.out.println(); // for spacing
@@ -127,7 +126,7 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
-        // Test 9: คำนวณตามกฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้าไม่ถึง 6 ชิ้น
+        // Test 10: คำนวณตามกฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้าไม่ถึง 6 ชิ้น
         ArrayList<CartItem> DiscountVer2Cart = new ArrayList<>();
         DiscountVer2Cart.add(new CartItem("BULK", "Donut", 10.0, 10)); // 100-(10)== 90 
         DiscountVer2Cart.add(new CartItem("BULK", "Yogurt", 12, 5));   // 60
@@ -178,10 +177,10 @@ public class ShoppingCartManualTest {
         TextWrongCart.add(new CartItem("bogo", "Shampoo", 45.0, 2)); // 45 free 1
         double total13 = ShoppingCartCalculator.calculateTotalPrice(TextWrongCart);
         if (total13 == 0.0) {
-            System.out.println("Tase Case 13 : PASSED: Mix text cart total should return 0.0");
+            System.out.println("Tase Case 13 : PASSED: Text wrong cart total should return 0.0");
             passedCount++;
         } else {
-            System.out.println("Tase Case 13 : FAILED: Mix text cart total expected 260.0 but got " + total13);
+            System.out.println("Tase Case 13 : FAILED: Text wrong cart total expected 260.0 but got " + total13);
             failedCount++;
         }
 
@@ -200,11 +199,20 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
-
-
-
-
-
+        // Test 15 : คำนวณกรณีใส่ค่าว่างหรือเว้นวรรคช่องว่าง
+        ArrayList<CartItem> TextNullCart = new ArrayList<>();
+        TextNullCart.add(new CartItem(" ", " ", 0, 10)); // 0
+        TextNullCart.add(new CartItem(" ", " ", 0, 5)); // 35*3 == 105 free 2
+        TextNullCart.add(new CartItem(" ", " ", 20, 1)); // 20
+        TextNullCart.add(new CartItem(" ", " ", 45.0, 2)); // 45 free 1
+        double total15 = ShoppingCartCalculator.calculateTotalPrice(TextNullCart);
+        if (total15 == 0.0) {
+            System.out.println("Tase Case 15 : PASSED: Text null cart total should return 0.0");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 15 : FAILED: Text null cart total expected 0.0 but got " + total15);
+            failedCount++;
+        }
 
         // --- Test Summary ---
         System.out.println("\n--------------------");
