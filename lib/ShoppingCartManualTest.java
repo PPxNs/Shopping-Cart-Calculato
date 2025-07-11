@@ -88,20 +88,20 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
-        // Test 7: คำนวณตามกฎส่วนลด BOGO-APPLE (ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้
+        // Test 7: คำนวณตามกฎส่วนลด BOGO(ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้
         ArrayList<CartItem> FreeCart = new ArrayList<>();
         FreeCart.add(new CartItem("BOGO", "Frozen food", 85.0, 3)); // 85*2 == 170 free 1
         FreeCart.add(new CartItem("BOGO", "Milk", 30.0, 2));      // 30 free 1
         double total7 = ShoppingCartCalculator.calculateTotalPrice(FreeCart);
         if (total7 == 200.0) {
-            System.out.println("Tase Case 7 : PASSED: Free cart cart total is correct (200.0)");
+            System.out.println("Tase Case 7 : PASSED: Free cart total is correct (200.0)");
             passedCount++;
         } else {
             System.out.println("Tase Case 7 : FAILED: Free cart total expected 200.0 but got " + total7);
             failedCount++;
         }
 
-        // Test 8: คำนวณตามกฎส่วนลด BOGO-APPLE (ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้า 1 ชิ้น
+        // Test 8: คำนวณตามกฎส่วนลด BOGO (ซื้อ 1 แถม 1) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้า 1 ชิ้น
         ArrayList<CartItem> FreeBuyOneCart = new ArrayList<>();
         FreeBuyOneCart.add(new CartItem("BOGO", "Frozen food", 85.0, 3)); // 85*2 == 170 free 1
         FreeBuyOneCart.add(new CartItem("BOGO", "Sandwich", 10.0, 1));      // 10 free 1
@@ -111,6 +111,46 @@ public class ShoppingCartManualTest {
             passedCount++;
         } else {
             System.out.println("Tase Case 8 : FAILED: Free buy one cart total expected 180.0 but got " + total8);
+            failedCount++;
+        }
+
+        // Test 9: คำนวณตามกฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้
+        ArrayList<CartItem> DiscountCart = new ArrayList<>();
+        DiscountCart.add(new CartItem("BULK", "Donut", 10.0, 10)); // 100-(10)== 90 
+        DiscountCart.add(new CartItem("BULK", "Yogurt", 12, 6));   // 72-(7.2)==64.8
+        double total9 = ShoppingCartCalculator.calculateTotalPrice(DiscountCart);
+        if (total9 == 154.8) {
+            System.out.println("Tase Case 9 : PASSED: Discount cart total is correct (154.8)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 9 : FAILED: Discount cart total expected 154.8 but got " + total9);
+            failedCount++;
+        }
+
+        // Test 9: คำนวณตามกฎส่วนลด BULK (ซื้อ >= 6 ชิ้น ลด 10%) กรณีซื้อสินค้าทั้งหมดตามโปรที่วางไว้ แต่มีบางรายการเลือกเข้าตะกร้าไม่ถึง 6 ชิ้น
+        ArrayList<CartItem> DiscountVer2Cart = new ArrayList<>();
+        DiscountVer2Cart.add(new CartItem("BULK", "Donut", 10.0, 10)); // 100-(10)== 90 
+        DiscountVer2Cart.add(new CartItem("BULK", "Yogurt", 12, 5));   // 60
+        double total10 = ShoppingCartCalculator.calculateTotalPrice(DiscountVer2Cart);
+        if (total10 == 150.0) {
+            System.out.println("Tase Case 10 : PASSED: Discount cart ver 2 total is correct (150.0)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 10 : FAILED: Discount cart ver 2 total expected 150.0 but got " + total10);
+            failedCount++;
+        }
+
+        ArrayList<CartItem> MixCart = new ArrayList<>();
+        MixCart.add(new CartItem("BULK", "Donut", 10.0, 10)); // 100-(10)== 90 
+        MixCart.add(new CartItem("BOGO", "Popcorn", 35.0, 5)); // 35*3 == 105 free 2
+        MixCart.add(new CartItem("NORMAL", "Milk", 20, 1)); // 20
+        MixCart.add(new CartItem("BOGO", "Shampoo", 45.0, 2)); // 45 free 1
+        double total11 = ShoppingCartCalculator.calculateTotalPrice(MixCart);
+        if (total11 == 260.0) {
+            System.out.println("Tase Case 11 : PASSED: Mix cart total is correct (260.0)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 11 : FAILED: Mix cart total expected 260.0 but got " + total11);
             failedCount++;
         }
 
