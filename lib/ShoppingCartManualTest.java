@@ -140,6 +140,7 @@ public class ShoppingCartManualTest {
             failedCount++;
         }
 
+        // Test 11 : คำนวณกรณีที่มีกรณี NORMAL, BULK และ BOGO
         ArrayList<CartItem> MixCart = new ArrayList<>();
         MixCart.add(new CartItem("BULK", "Donut", 10.0, 10)); // 100-(10)== 90 
         MixCart.add(new CartItem("BOGO", "Popcorn", 35.0, 5)); // 35*3 == 105 free 2
@@ -153,6 +154,57 @@ public class ShoppingCartManualTest {
             System.out.println("Tase Case 11 : FAILED: Mix cart total expected 260.0 but got " + total11);
             failedCount++;
         }
+
+        // Test 12 : คำนวณกรณีที่มีกรณี NORMAL, BULK และ BOGO แต่เขียนเป็นพิมพ์เล็กพิมพ์ใหญ่
+        ArrayList<CartItem> MixTextCart = new ArrayList<>();
+        MixTextCart.add(new CartItem("Bulk", "Donut", 10.0, 10)); // 100-(10)== 90 
+        MixTextCart.add(new CartItem("BOGO", "Popcorn", 35.0, 5)); // 35*3 == 105 free 2
+        MixTextCart.add(new CartItem("NOrMAL", "Milk", 20, 1)); // 20
+        MixTextCart.add(new CartItem("bogo", "Shampoo", 45.0, 2)); // 45 free 1
+        double total12 = ShoppingCartCalculator.calculateTotalPrice(MixTextCart);
+        if (total12 == 260.0) {
+            System.out.println("Tase Case 12 : PASSED: Mix text cart total is correct (260.0)");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 12 : FAILED: Mix text cart total expected 260.0 but got " + total12);
+            failedCount++;
+        }
+
+        // Test 13 : คำนวณกรณีเขียน sku ผิดหรือนอกเหนือคำว่า NORMAL, BULK และ BOGO
+        ArrayList<CartItem> TextWrongCart = new ArrayList<>();
+        TextWrongCart.add(new CartItem("Buck", "Donut", 10.0, 10)); // 100-(10)== 90 
+        TextWrongCart.add(new CartItem("BOGO", "Popcorn", 35.0, 5)); // 35*3 == 105 free 2
+        TextWrongCart.add(new CartItem("NOrMAL", "Milk", 20, 1)); // 20
+        TextWrongCart.add(new CartItem("bogo", "Shampoo", 45.0, 2)); // 45 free 1
+        double total13 = ShoppingCartCalculator.calculateTotalPrice(TextWrongCart);
+        if (total13 == 0.0) {
+            System.out.println("Tase Case 13 : PASSED: Mix text cart total should return 0.0");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 13 : FAILED: Mix text cart total expected 260.0 but got " + total13);
+            failedCount++;
+        }
+
+        // Test 14 : คำนวณกรณีใส่ค่า price = 0
+        ArrayList<CartItem> PriceZeroCart = new ArrayList<>();
+        PriceZeroCart.add(new CartItem("BULK", "Donut", 0, 10)); // 0
+        PriceZeroCart.add(new CartItem("BOGO", "Popcorn", 35.0, 5)); // 35*3 == 105 free 2
+        PriceZeroCart.add(new CartItem("NORMAL", "Milk", 20, 1)); // 20
+        PriceZeroCart.add(new CartItem("BOGO", "Shampoo", 45.0, 2)); // 45 free 1
+        double total14 = ShoppingCartCalculator.calculateTotalPrice(PriceZeroCart);
+        if (total14 == 0.0) {
+            System.out.println("Tase Case 14 : PASSED: Price zero cart total should return 0.0");
+            passedCount++;
+        } else {
+            System.out.println("Tase Case 14 : FAILED: Price zero cart total expected 0.0 but got " + total14);
+            failedCount++;
+        }
+
+
+
+
+
+
 
         // --- Test Summary ---
         System.out.println("\n--------------------");
