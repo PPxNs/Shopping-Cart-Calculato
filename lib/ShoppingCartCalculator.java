@@ -23,18 +23,16 @@ public class ShoppingCartCalculator {
                 return 0.0 ;
             }
             
-            if (item.sku().equalsIgnoreCase("BLUK")) {
-                
+            if (item.sku().equalsIgnoreCase("BULK")) {
+                if (item.quantity()>=6) {
+                    total +=(item.price()*item.quantity())-(item.price()*item.quantity()*10.0/100.0);
+                }else total +=item.price()*item.quantity(); //รอปรับ logic again
             } 
-            
             else if (item.sku().equalsIgnoreCase("BOGO")) {
-    
                 total += item.price()*(Math.ceil(item.quantity()/2.0));
-                
-                
             } 
-            
-            else {total +=item.price()*item.quantity();} 
+            else {total +=item.price()*item.quantity();
+            } 
 
         }
         
